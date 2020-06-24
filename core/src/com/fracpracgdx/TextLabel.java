@@ -5,9 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public class TextLabel {
+public class TextLabel extends GUIElement {
 	Label label;
-	Posn pos;
 	
 	public TextLabel (String content, Skin skin) {
 		this.label = new Label(content, skin);
@@ -44,12 +43,9 @@ public class TextLabel {
 		}
 	}
 	
+	@Override
 	public void addToStage(Stage stage) {
 		stage.addActor(this.label);
-	}
-	
-	public void setPos(Posn pos) {
-		this.pos = pos;
 	}
 	
 	public void setText(String content) {

@@ -7,10 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
-public class NumberInputField {
+public class NumberInputField extends GUIElement {
 	protected Fraction content;
 	protected TextField field;
-	protected Posn pos;
 	protected Skin skin;
 	
 	public NumberInputField(Posn pos) {
@@ -24,6 +23,7 @@ public class NumberInputField {
 		this.init();
 	}
 	
+	@Override
 	protected void addToStage(Stage stage) {
 		stage.addActor(this.field);
 	}
