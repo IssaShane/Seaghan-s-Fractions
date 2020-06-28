@@ -12,12 +12,19 @@ public class NumberInputField extends GUIElement {
 	protected TextField field;
 	protected Skin skin;
 	
+	public NumberInputField() {
+		super();
+		this.init();
+	}
+	
 	public NumberInputField(Posn pos) {
+		super();
 		this.pos = pos;
 		this.init();
 	}
 	
 	public NumberInputField(Posn pos, String skinfilename) {
+		super();
 		this.pos = pos;
 		this.skin = new Skin(Gdx.files.internal(skinfilename));
 		this.init();
@@ -51,5 +58,18 @@ public class NumberInputField extends GUIElement {
 		this.content = this.getContent();
 		if (this.content.denom == 1) return Integer.toString(this.content.num);
 		else return Integer.toString(this.content.num) + "/" + Integer.toString(this.content.denom);
+	}
+	
+	@Override
+	public void setPos(Posn pos) {
+		super.setPos(pos);
+		this.field.setX(this.pos.x);
+		this.field.setY(this.pos.y);
+		this.field.setWidth(this.pos.w);
+		this.field.setHeight(this.pos.h);
+	}
+	
+	public void setText(String text) {
+		this.field.setText(text);
 	}
 }

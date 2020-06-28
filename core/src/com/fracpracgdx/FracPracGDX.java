@@ -28,6 +28,8 @@ public class FracPracGDX extends ApplicationAdapter {
 	TextArea problemView;
 	Problem problem;
 	FractionInputField fracField;
+	GUIContainer buttons;
+	GUIContainer textFields;
 	
 	public Posn centrePos(Posn currentPos) {
 		Posn retval = new Posn(0,0,0,0);
@@ -64,7 +66,10 @@ public class FracPracGDX extends ApplicationAdapter {
 	  final NumberInputField numField = new NumberInputField(new Posn(10, 255, 200, 30), "uiskin.json");
 	  fracField = new FractionInputField(new Posn(10, 290, 200, 30), "uiskin.json");
 	  //final TextLabel inputLabel = new TextLabel("hello this is a label", skin, new Posn(10, 340, 200, 30));
-	  
+	  textFields = new GUIContainer(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
+	  textFields.setPos(new Posn(0,0,640,240));
+	  fracField.setText("Frac");
+	  numField.setText("NUM");
 	  
 	  // button
 	  Button returnButton = new TextButton("Return", skin, "default");
@@ -107,13 +112,17 @@ public class FracPracGDX extends ApplicationAdapter {
 	  	}
 	  });
 	  
+	  textFields.addElement(fracField);
+	  textFields.addElement(numField);
+	  textFields.calibrateLocations();
 	  
 	  // add all actors to stage
-	  fracField.addToStage(stage);
+	  //fracField.addToStage(stage);
 	  stage.addActor(returnButton);
-	  numField.addToStage(stage);
+	  //numField.addToStage(stage);
 	  stage.addActor(problemView);
 	  stage.addActor(reloadButton);
+	  textFields.addToStage(stage);
 	}
 
 	@Override

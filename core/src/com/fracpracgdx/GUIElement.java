@@ -15,6 +15,11 @@ public abstract class GUIElement {
 	protected GUILocation location;
 	protected int padding_left = 3, padding_right = 3, padding_top = 3, padding_bottom = 3;
 	
+	public GUIElement() {
+		this.pos = new Posn(0,0,0,0);
+		this.location = new GUILocation(Alignment.LEFT, Alignment.BOTTOM);
+	}
+	
 	public void setPos(Posn pos) {
 		this.pos = pos;
 	}
