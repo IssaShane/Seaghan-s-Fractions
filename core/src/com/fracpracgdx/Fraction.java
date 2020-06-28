@@ -8,6 +8,25 @@ public class Fraction {
 		this.denom = 1;
 	}
 	
+	private static String extractNumber(final String str) {                
+	    
+	    if(str == null || str.isEmpty()) return "";
+	    
+	    StringBuilder sb = new StringBuilder();
+	    boolean found = false;
+	    for(char c : str.toCharArray()){
+	        if(Character.isDigit(c)){
+	            sb.append(c);
+	            found = true;
+	        } else if(found){
+	            // If we already found a digit before and this char is not a digit, stop looping
+	            break;                
+	        }
+	    }
+	    
+	    return sb.toString();
+	}
+	
 	public Fraction(String str) {
 		char [] chars = str.toCharArray();
 		String numStr = new String();
@@ -24,8 +43,10 @@ public class Fraction {
 		for (; i < str.length(); i++) {
 			if (chars[i] != ' ' && chars[i] != '/') denomStr += chars[i];
 		}
+		denomStr = extractNumber(denomStr);
 		int denomInt = 1;
-		if (denomStr != null) denomInt = Integer.parseInt(denomStr);
+		System.out.println("denomStr: " + denomStr);
+		if (denomStr != null && !denomStr.equals("")) denomInt = Integer.parseInt(denomStr);
 		//System.out.println("denomInt: " + Integer.toString(denomInt));
 		this.num = numInt;
 		this.denom = denomInt;

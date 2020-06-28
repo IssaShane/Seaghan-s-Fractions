@@ -72,9 +72,9 @@ public class FracPracGDX extends ApplicationAdapter {
 	  numField.setText("NUM");
 	  
 	  // button
-	  Button returnButton = new TextButton("Return", skin, "default");
-	  returnButton.setSize(100, 30);
-	  returnButton.setPosition(230, 220);
+	  GUIButton returnButton = new GUIButton("Return", skin, "default", new Posn(230,330,100,30));
+	  //returnButton.setSize(100, 30);
+	  //returnButton.setPosition(230, 220);
 	  returnButton.addListener(new InputListener() {
 		  @Override 
 		  public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -100,9 +100,9 @@ public class FracPracGDX extends ApplicationAdapter {
 	  problemView.setText(problem.toString());
 	  
 	  // reload problem button
-	  Button reloadButton = new TextButton("Reload", skin, "default");
-	  reloadButton.setSize(100, 30);
-	  reloadButton.setPosition(330, 220);
+	  GUIButton reloadButton = new GUIButton("Reload", skin, "default", new Posn(330,220,100,30));
+	  //reloadButton.setSize(100, 30);
+	  //reloadButton.setPosition(330, 220);
 	  reloadButton.addListener(new InputListener() { 
 	  	@Override
 	  	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -112,16 +112,23 @@ public class FracPracGDX extends ApplicationAdapter {
 	  	}
 	  });
 	  
+	  buttons = new GUIContainerRow(new GUILocation(Alignment.CENTRE, Alignment.BOTTOM));
+	  buttons.setPos(new Posn(0,0,640,30));
+	  buttons.addElement(reloadButton);
+	  buttons.addElement(returnButton);
+	  buttons.calibrateLocations();
+	  
 	  textFields.addElement(fracField);
 	  textFields.addElement(numField);
 	  textFields.calibrateLocations();
 	  
 	  // add all actors to stage
 	  //fracField.addToStage(stage);
-	  stage.addActor(returnButton);
+	  //stage.addActor(returnButton);
 	  //numField.addToStage(stage);
 	  stage.addActor(problemView);
-	  stage.addActor(reloadButton);
+	  //stage.addActor(reloadButton);
+	  buttons.addToStage(stage);
 	  textFields.addToStage(stage);
 	}
 
