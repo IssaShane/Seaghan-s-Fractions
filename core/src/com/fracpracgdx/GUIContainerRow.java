@@ -1,6 +1,13 @@
 package com.fracpracgdx;
 
 public class GUIContainerRow extends GUIContainer {
+	public GUIContainerRow() {
+		super();
+	}
+	
+	public GUIContainerRow(GUILocation location) {
+		super(location);
+	}
 	
 	@Override
 	public void calibrateLocations() {
@@ -30,11 +37,11 @@ public class GUIContainerRow extends GUIContainer {
 		}
 		else if (this.location.horizontal == Alignment.CENTRE) {
 			// find the centre
-			int centrex = this.pos.w/2;
+			int centrex = this.pos.x + this.pos.w/2;
 			System.out.println("centrex: " + Integer.toString(centrex));
 			Posn newpos_ = contents.get(contents.size()/2).getPos();
-			if (contents.size() %2 != 0) newpos_.x = centrex + this.pos.x - (newpos_.w/2);
-			else newpos_.x = centrex + this.pos.x;
+			if (contents.size() %2 != 0) newpos_.x = centrex - (newpos_.w/2);
+			else newpos_.x = centrex;
 			contents.get(contents.size()/2).setPos(newpos_);
 			
 			// elements to the left of centre
