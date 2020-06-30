@@ -21,13 +21,14 @@ public abstract class GUIElement {
 	}
 	
 	public void setPos(Posn pos) {
-		this.pos = pos;
+		this.pos = new Posn(pos);
+		//System.out.println("elem height: " + this.pos.h);
 	}
 	
 	public Posn getPos() { return this.pos; }
 	
 	public void setLocation(GUILocation location) {
-		this.location = location;
+		this.location = new GUILocation(location);
 	}
 	
 	public GUILocation getLocation() { return this.location; }

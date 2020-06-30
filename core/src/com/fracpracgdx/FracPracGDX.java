@@ -25,11 +25,12 @@ import com.LibVectorWrapper.BashWrapper;
 public class FracPracGDX extends ApplicationAdapter {
 	Stage stage;
 	Skin skin;
-	TextArea problemView;
+	GUITextArea problemView;
 	Problem problem;
 	FractionInputField fracField;
 	GUIContainer buttons;
 	GUIContainer textFields;
+	GUIContainer view;
 	
 	public Posn centrePos(Posn currentPos) {
 		Posn retval = new Posn(0,0,0,0);
@@ -54,12 +55,13 @@ public class FracPracGDX extends ApplicationAdapter {
 		boolean correct = problem.checkSoln(cont);
 		System.out.println("evaluated");
 		if (problem.checkSoln(fracField.getContent())) {
-			problemView.setText("YOU ARE CORRECT");
-		} else problemView.setText("YOU ARE INCORRECT\nCORRECT SOLN: " + problem.evaluate());
+			problemView.setText("You are correct. Good job!");
+		} else problemView.setText("You are incorrct\nCorrect solution: " + problem.evaluate() + "\nTry again!");
 	}
 	
 	@Override
 	public void create () {
+		view = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
@@ -68,11 +70,11 @@ public class FracPracGDX extends ApplicationAdapter {
 	  //final TextLabel inputLabel = new TextLabel("hello this is a label", skin, new Posn(10, 340, 200, 30));
 	  textFields = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
 	  textFields.setPos(new Posn(0,0,640,240));
-	  fracField.setText("Frac");
+	  fracField.setText("Write your solution here");
 	  numField.setText("NUM");
 	  
 	  // button
-	  GUIButton returnButton = new GUIButton("Return", skin, "default", new Posn(230,330,100,30));
+	  GUIButton returnButton = new GUIButton("Check Solution", skin, "default", new Posn(230,330,120,30));
 	  //returnButton.setSize(100, 30);
 	  //returnButton.setPosition(230, 220);
 	  returnButton.addListener(new InputListener() {
@@ -85,24 +87,12 @@ public class FracPracGDX extends ApplicationAdapter {
 	  });
 	  
 	  // Problem View
-	  problemView = new TextArea("", skin);
-	  
-	  problemView.setX(10);
-	  problemView.setY(10);
-	  problemView.setWidth(200);
-	  problemView.setHeight(100);
-	  Posn centre = centrePos(new Posn(0,0,(int)problemView.getWidth(),(int)problemView.getHeight()));
-	  problemView.setX(centre.x);
-	  problemView.setY(centre.y);
-	  problemView.setWidth(centre.w);
-	  problemView.setHeight(centre.h);
+	  problemView = new GUITextArea("", skin, "default", new Posn(10, 10, 200, 100));
 	  problem = new Problem();
 	  problemView.setText(problem.toString());
 	  
 	  // reload problem button
-	  GUIButton reloadButton = new GUIButton("Reload", skin, "default", new Posn(330,220,100,30));
-	  //reloadButton.setSize(100, 30);
-	  //reloadButton.setPosition(330, 220);
+	  GUIButton reloadButton = new GUIButton("Next Problem", skin, "default", new Posn(330,220,120,30));
 	  reloadButton.addListener(new InputListener() { 
 	  	@Override
 	  	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -119,17 +109,20 @@ public class FracPracGDX extends ApplicationAdapter {
 	  buttons.calibrateLocations();
 	  
 	  textFields.addElement(fracField);
-	  textFields.addElement(numField);
+	  //textFields.addElement(numField);
 	  textFields.calibrateLocations();
 	  
+	  view.addElement(textFields);
+	  view.addElement(buttons);
+	  view.addElement(problemView);
+	  view.setPos(new Posn(0,0,640,480));
+	  view.calibrateLocations();
+	  
 	  // add all actors to stage
-	  //fracField.addToStage(stage);
-	  //stage.addActor(returnButton);
-	  //numField.addToStage(stage);
-	  stage.addActor(problemView);
-	  //stage.addActor(reloadButton);
-	  buttons.addToStage(stage);
-	  textFields.addToStage(stage);
+	  //problemView.addToStage(stage);
+	  //buttons.addToStage(stage);
+	  //textFields.addToStage(stage);
+	  view.addToStage(stage);
 	}
 
 	@Override

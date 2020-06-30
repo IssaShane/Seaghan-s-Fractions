@@ -14,4 +14,11 @@ public class Posn {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public Posn(Posn other) {
+		this.x = other.x;
+		this.y = other.y;
+		this.w = other.w;
+		this.h = other.h;
+	}
 }
