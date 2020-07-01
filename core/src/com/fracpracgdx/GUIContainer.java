@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class GUIContainer extends GUIElement {
+public abstract class GUIContainer extends GUIElement {
 	protected ArrayList<GUIElement> contents;
 	
 	public GUIContainer() {
@@ -20,7 +20,7 @@ public class GUIContainer extends GUIElement {
 		this.contents = new ArrayList<GUIElement>();
 	}
 	
-	public void calibrateLocations() {}
+	abstract public void calibrateLocations();
 		
 	@Override
 	protected void addToStage(Stage stage) {
