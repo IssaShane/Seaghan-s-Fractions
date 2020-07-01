@@ -84,4 +84,10 @@ public class GUIContainerRow extends GUIContainer {
 			}
 		}
 	}
+	
+	@Override
+	public void setPos(Posn pos) {
+		this.pos = new Posn(pos);
+		if (this.contents.size() > 0) calibrateLocations();
+	}
 }

@@ -68,8 +68,6 @@ public class FracPracGDX extends ApplicationAdapter {
 	  final NumberInputField numField = new NumberInputField(new Posn(10, 255, 200, 30), "uiskin.json");
 	  fracField = new FractionInputField(new Posn(10, 290, 200, 30), "uiskin.json");
 	  //final TextLabel inputLabel = new TextLabel("hello this is a label", skin, new Posn(10, 340, 200, 30));
-	  textFields = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
-	  textFields.setPos(new Posn(0,0,640,240));
 	  fracField.setText("Write your solution here");
 	  numField.setText("NUM");
 	  
@@ -108,13 +106,9 @@ public class FracPracGDX extends ApplicationAdapter {
 	  buttons.addElement(returnButton);
 	  buttons.calibrateLocations();
 	  
-	  textFields.addElement(fracField);
-	  //textFields.addElement(numField);
-	  textFields.calibrateLocations();
-	  
-	  view.addElement(textFields);
-	  view.addElement(buttons);
 	  view.addElement(problemView);
+	  view.addElement(fracField);
+	  view.addElement(buttons);
 	  view.setPos(new Posn(0,0,640,480));
 	  view.calibrateLocations();
 	  
