@@ -20,17 +20,24 @@ public abstract class GUIElement {
 		this.location = new GUILocation(Alignment.LEFT, Alignment.BOTTOM);
 	}
 	
+	// setPos(pos) alters the current position to pos
+	// Effects: mutates data
+	// Efficiency: O(1)
 	public void setPos(Posn pos) {
 		this.pos = new Posn(pos);
-		//System.out.println("elem height: " + this.pos.h);
 	}
 	
+	// getPos() gives the current position
 	public Posn getPos() { return this.pos; }
 	
+	// setLocation(location) alters the alignment of the element to location
+	// Efficiency: O(1)
+	// Effects: mutates data
 	public void setLocation(GUILocation location) {
 		this.location = new GUILocation(location);
 	}
 	
+	// getLocation() gives the current alignment
 	public GUILocation getLocation() { return this.location; }
 	
 	abstract protected void addToStage(Stage stage);

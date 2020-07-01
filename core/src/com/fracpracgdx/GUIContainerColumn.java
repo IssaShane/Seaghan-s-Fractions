@@ -8,7 +8,6 @@ public class GUIContainerColumn extends GUIContainer {
 
 	@Override
 	public void calibrateLocations() {
-		//System.out.println("top of calib this.pos.h: " + Integer.toString(this.pos.h));
 		// determine horizontal location
 		if (this.location.horizontal == Alignment.LEFT) { 
 			for (GUIElement elem : contents) {
@@ -64,7 +63,6 @@ public class GUIContainerColumn extends GUIContainer {
 			if (contents.size()%2 != 0) pos_.y = centrey - (pos_.h/2);
 			else pos_.y = centrey;
 			System.out.println("centre y place: " + Integer.toString(pos_.y));
-			//System.out.println("CENTREY: " + Integer.toString(centrey));
 			contents.get(contents.size()/2).setPos(pos_);
 			
 			// elements above centre

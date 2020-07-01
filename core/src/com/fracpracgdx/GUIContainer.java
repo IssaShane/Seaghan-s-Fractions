@@ -20,8 +20,13 @@ public abstract class GUIContainer extends GUIElement {
 		this.contents = new ArrayList<GUIElement>();
 	}
 	
+	// calibrateLocations() alters the locations of each element of the container
+	//   in accordinance with the alignment
+	// Effects: mutates data
+	// Efficiency: O(n)
 	abstract public void calibrateLocations();
 		
+	// addToStage(stage) explained in GUIElement.java
 	@Override
 	protected void addToStage(Stage stage) {
 		for (GUIElement elem : contents) {
@@ -29,6 +34,9 @@ public abstract class GUIContainer extends GUIElement {
 		}
 	}
 	
+	// addElement(elem) adds elem to the container
+	// Effects: mutates data
+	// Efficiency: O(1)
 	public void addElement(GUIElement elem) {
 		this.contents.add(elem);
 	}
