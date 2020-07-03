@@ -48,6 +48,15 @@ public class TextLabel extends GUIElement {
 		stage.addActor(this.label);
 	}
 	
+	@Override
+	public void setPos(Posn pos) {
+		this.pos = new Posn(pos);
+		this.label.setX(this.pos.x);
+		this.label.setY(this.pos.y);
+		this.label.setWidth(this.pos.w);
+		this.label.setHeight(this.pos.h);
+	}
+	
 	public void setText(String content) {
 		this.label.setText(content);
 	}

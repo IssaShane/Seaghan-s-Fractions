@@ -66,4 +66,12 @@ public class Problem {
 		else if (this.op == '*') retval += "multfrac " + this.frac1.toString() + " " + this.frac2.toString();
 		return retval;
 	}
+	
+	public void setUpperBound(int upper) {
+		this.upper = upper;
+	}
+	
+	public void setLowerBound(int lower) {
+		this.lower = lower;
+	}
 }

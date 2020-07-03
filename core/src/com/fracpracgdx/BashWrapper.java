@@ -21,7 +21,7 @@ public class BashWrapper {
 	public BashWrapper(String library, String script) {
 		this.library = library;
 		this.script = script;
-		System.loadLibrary(this.library);
+		//System.loadLibrary(this.library);
 		
 		// make sure the bash script is runnable
 		Process proc = null;

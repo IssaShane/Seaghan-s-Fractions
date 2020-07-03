@@ -20,8 +20,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.LibVectorWrapper.BashWrapper;
-
 public class FracPracGDX extends ApplicationAdapter {
 	Stage stage;
 	Skin skin;
@@ -31,6 +29,9 @@ public class FracPracGDX extends ApplicationAdapter {
 	GUIContainer buttons;
 	GUIContainer textFields;
 	GUIContainer view;
+	GUIContainer difficultyView;
+	GUIContainer boundView;
+	GUIContainer totalView;
 	
 	public Posn centrePos(Posn currentPos) {
 		Posn retval = new Posn(0,0,0,0);
@@ -106,17 +107,49 @@ public class FracPracGDX extends ApplicationAdapter {
 	  buttons.addElement(returnButton);
 	  buttons.calibrateLocations();
 	  
+	  // Difficulty View
+	  difficultyView = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
+	  TextLabel diffViewLabel = new TextLabel("Difficulty", skin);
+	  diffViewLabel.setPos(new Posn(0,200,50,30));
+	  GUIButton diff1 = new GUIButton("1", skin, "default");
+	  diff1.setPos(new Posn(0,0,30,30));
+	  GUIButton diff2 = new GUIButton("2", skin, "default");
+	  diff2.setPos(new Posn(0,0,30,30));
+	  GUIButton diff3 = new GUIButton("3", skin, "default");
+	  diff3.setPos(new Posn(0,0,30,30));
+	  difficultyView.addElement(diffViewLabel);
+	  difficultyView.addElement(diff1);
+	  difficultyView.addElement(diff2);
+	  difficultyView.addElement(diff3);
+	  difficultyView.setPos(new Posn(0,0,210,480));
+	  difficultyView.calibrateLocations();
+	  
 	  view.addElement(problemView);
 	  view.addElement(fracField);
 	  view.addElement(buttons);
-	  view.setPos(new Posn(0,0,640,480));
+	  view.setPos(new Posn(210,0,220,480));
 	  view.calibrateLocations();
 	  
+	  boundView = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
+	  NumberInputField upperBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
+	  NumberInputField lowerBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
+	  TextLabel boundViewLabel = new TextLabel("Upper & Lower Bounds", skin);
+	  boundViewLabel.setPos(new Posn(0,0,200,100));
+	  boundView.addElement(boundViewLabel);
+	  boundView.addElement(upperBound);
+	  boundView.addElement(lowerBound);
+	  boundView.setPos(new Posn(0,0,200,480));
+	  boundView.calibrateLocations();
+	  
+	  totalView = new GUIContainerRow(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
+	  totalView.setPos(new Posn(0,0,640,480));
+	  totalView.addElement(difficultyView);
+	  totalView.addElement(view);
+	  totalView.addElement(boundView);
+	  totalView.calibrateLocations();
+	  
 	  // add all actors to stage
-	  //problemView.addToStage(stage);
-	  //buttons.addToStage(stage);
-	  //textFields.addToStage(stage);
-	  view.addToStage(stage);
+	  totalView.addToStage(stage);
 	}
 
 	@Override
