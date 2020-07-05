@@ -144,7 +144,9 @@ public class FracPracGDX extends ApplicationAdapter {
 	  
 	  boundView = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
 	  upperBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
+	  upperBound.setText("upper bound");
 	  lowerBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
+	  lowerBound.setText("lower bound");
 	  TextLabel boundViewLabel = new TextLabel("Upper & Lower Bounds", skin);
 	  boundViewLabel.setPos(new Posn(0,0,200,100));
 	  boundView.addElement(boundViewLabel);
