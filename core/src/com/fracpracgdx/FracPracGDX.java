@@ -63,11 +63,17 @@ public class FracPracGDX extends ApplicationAdapter {
 	
 	public void checkResult() {
 		System.out.println("checkResult");
-		Fraction cont = fracField.getContent();
-		System.out.println("content taken");
-		boolean correct = problem.checkSoln(cont);
+		boolean correct;
+		try {
+			Fraction cont = fracField.getContent();
+			System.out.println("content taken");
+			correct = problem.checkSoln(cont);
+		} catch (NumberFormatException e) {
+			correct = false;
+		}
+		
 		System.out.println("evaluated");
-		if (problem.checkSoln(fracField.getContent())) {
+		if (correct) {
 			problemView.setText("You are correct. Good job!");
 		} else problemView.setText("You are incorrct\nCorrect solution: " + problem.evaluate() + "\nTry again!");
 	}
@@ -80,14 +86,11 @@ public class FracPracGDX extends ApplicationAdapter {
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
 	  final NumberInputField numField = new NumberInputField(new Posn(10, 255, 200, 30), "uiskin.json");
 	  fracField = new FractionInputField(new Posn(10, 290, 200, 30), "uiskin.json");
-	  //final TextLabel inputLabel = new TextLabel("hello this is a label", skin, new Posn(10, 340, 200, 30));
 	  fracField.setText("Write your solution here");
 	  numField.setText("NUM");
 	  
 	  // button
 	  GUIButton returnButton = new GUIButton("Check Solution", skin, "default", new Posn(230,330,120,30));
-	  //returnButton.setSize(100, 30);
-	  //returnButton.setPosition(230, 220);
 	  returnButton.addListener(new InputListener() {
 		  @Override 
 		  public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
