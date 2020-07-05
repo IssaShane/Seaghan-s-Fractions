@@ -31,6 +31,8 @@ public class FracPracGDX extends ApplicationAdapter {
 	GUIContainer view;
 	GUIContainer difficultyView;
 	GUIContainer boundView;
+	NumberInputField upperBound;
+	NumberInputField lowerBound;
 	GUIContainer totalView;
 	
 	public Posn centrePos(Posn currentPos) {
@@ -45,6 +47,16 @@ public class FracPracGDX extends ApplicationAdapter {
 	}
 	
 	public void reloadProblemView() {
+		try {
+			problem.setLowerBound(lowerBound.getContent().num);
+			problem.setUpperBound(upperBound.getContent().denom);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("caught");
+			problem.setLowerBound(1);
+			problem.setUpperBound(5);
+		}
 		problem.reload(0);
 		problemView.setText(problem.toString());
 	}
@@ -131,8 +143,8 @@ public class FracPracGDX extends ApplicationAdapter {
 	  view.calibrateLocations();
 	  
 	  boundView = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
-	  NumberInputField upperBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
-	  NumberInputField lowerBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
+	  upperBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
+	  lowerBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
 	  TextLabel boundViewLabel = new TextLabel("Upper & Lower Bounds", skin);
 	  boundViewLabel.setPos(new Posn(0,0,200,100));
 	  boundView.addElement(boundViewLabel);

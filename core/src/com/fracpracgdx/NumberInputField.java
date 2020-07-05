@@ -51,11 +51,13 @@ public class NumberInputField extends GUIElement {
 	}
 	
 	public Fraction getContent() { 
-		this.content = new Fraction(Integer.parseInt(this.field.getText()));
-		return this.content; }
+		
+			this.content = new Fraction(Integer.parseInt(this.field.getText()));
+			return this.content; 
+	}
 	
 	public String getContentAsString() {
-		this.content = this.getContent();
+			this.content = this.getContent();
 		if (this.content.denom == 1) return Integer.toString(this.content.num);
 		else return Integer.toString(this.content.num) + "/" + Integer.toString(this.content.denom);
 	}
@@ -71,5 +73,17 @@ public class NumberInputField extends GUIElement {
 	
 	public void setText(String text) {
 		this.field.setText(text);
+	}
+	
+	public boolean isEmpty() {
+		System.out.println("isempty");
+		if (this.field.getText() == null) {
+			System.out.println("empty");
+			return true;
+		}
+		else {
+			System.out.println("not empty");
+			return false;
+		}
 	}
 }
