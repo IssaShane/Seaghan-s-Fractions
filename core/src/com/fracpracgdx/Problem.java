@@ -6,6 +6,7 @@ public class Problem {
 	Fraction frac1, frac2;
 	int lower, upper;
 	char op;
+	int difficulty = 0;
 	
 	public Problem() {
 		this.lower = 1;
@@ -31,6 +32,24 @@ public class Problem {
 		init();
 	}
 	
+	public void reload() {
+		if (difficulty == 1) {
+			this.frac1 = new Fraction(randInRange(), randInRange());
+			this.frac2 = new Fraction(randInRange(), this.frac1.denom);
+		}
+		else if (difficulty == 2) {
+			this.frac1 = new Fraction(randInRange(), randInRange());
+			int frac2denom = this.frac2.denom;
+			frac2denom *= randInRange(0, (this.upper/frac1.denom));
+			this.frac2 = new Fraction(randInRange(), frac2denom);
+		}
+		else if (difficulty == 3) {
+			this.frac1 = new Fraction(randInRange(), randInRange());
+			this.frac2 = new Fraction(randInRange(), randInRange());
+		}
+		init();
+	}
+	
 	public boolean checkSoln(Fraction soln) {
 		Fraction correctSoln = this.evaluate();
 		System.out.println("correctSoln taken");
@@ -50,8 +69,16 @@ public class Problem {
 		return retval;
 	}
 	
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+	
 	private int randInRange() {
 		return (int) (Math.random() * (this.upper - this.lower + 1) + this.lower);
+	}
+	
+	private int randInRange(int upper, int lower) {
+		return (int) (Math.random() * (upper - lower + 1) + lower);
 	}
 	
 	public String toString() {

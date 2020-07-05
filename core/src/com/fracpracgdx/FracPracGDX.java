@@ -46,6 +46,10 @@ public class FracPracGDX extends ApplicationAdapter {
 		return retval;
 	}
 	
+	public void setDifficulty(int difficulty) {
+		this.problem.setDifficulty(difficulty);
+	}
+	
 	public void reloadProblemView() {
 		try {
 			problem.setLowerBound(lowerBound.getContent().num);
@@ -94,7 +98,6 @@ public class FracPracGDX extends ApplicationAdapter {
 	  returnButton.addListener(new InputListener() {
 		  @Override 
 		  public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-			  System.out.println("return pressed");
 			  checkResult();
 			  return true;
 		  }
@@ -110,7 +113,6 @@ public class FracPracGDX extends ApplicationAdapter {
 	  reloadButton.addListener(new InputListener() { 
 	  	@Override
 	  	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-	  		System.out.println("reload");
 	  		reloadProblemView();
 	  		return true;
 	  	}
@@ -128,10 +130,31 @@ public class FracPracGDX extends ApplicationAdapter {
 	  diffViewLabel.setPos(new Posn(0,200,50,30));
 	  GUIButton diff1 = new GUIButton("1", skin, "default");
 	  diff1.setPos(new Posn(0,0,30,30));
+	  diff1.addListener(new InputListener() {
+		  @Override
+		  public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			  setDifficulty(1);
+			  return true;
+		  }
+	  });
 	  GUIButton diff2 = new GUIButton("2", skin, "default");
 	  diff2.setPos(new Posn(0,0,30,30));
+	  diff2.addListener(new InputListener() {
+		  @Override
+		  public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			  setDifficulty(2);
+			  return true;
+		  }
+	  });
 	  GUIButton diff3 = new GUIButton("3", skin, "default");
 	  diff3.setPos(new Posn(0,0,30,30));
+	  diff3.addListener(new InputListener() {
+		  @Override
+		  public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			  setDifficulty(3);
+			  return true;
+		  }
+	  });
 	  difficultyView.addElement(diffViewLabel);
 	  difficultyView.addElement(diff1);
 	  difficultyView.addElement(diff2);
@@ -146,9 +169,9 @@ public class FracPracGDX extends ApplicationAdapter {
 	  view.calibrateLocations();
 	  
 	  boundView = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
-	  upperBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
+	  upperBound = new NumberInputField(new Posn(0,0,120,30),"uiskin.json");
 	  upperBound.setText("upper bound");
-	  lowerBound = new NumberInputField(new Posn(0,0,100,30),"uiskin.json");
+	  lowerBound = new NumberInputField(new Posn(0,0,120,30),"uiskin.json");
 	  lowerBound.setText("lower bound");
 	  TextLabel boundViewLabel = new TextLabel("Upper & Lower Bounds", skin);
 	  boundViewLabel.setPos(new Posn(0,0,200,100));
