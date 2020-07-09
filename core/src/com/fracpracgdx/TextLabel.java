@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Align;
 
 public class TextLabel extends GUIElement {
 	Label label;
+	Label.LabelStyle style;
 	
 	public TextLabel (String content, Skin skin) {
 		this.label = new Label(content, skin);
@@ -41,6 +43,7 @@ public class TextLabel extends GUIElement {
 			this.label.setWidth(200);
 			this.label.setHeight(30);
 		}
+		this.style = this.label.getStyle();
 	}
 	
 	@Override
@@ -63,5 +66,37 @@ public class TextLabel extends GUIElement {
 	
 	public String getText() { return this.label.getText().toString(); }
 	
+	public void calibrateLocation() {
+		if (this.location.horizontal == Alignment.CENTRE && this.location.vertical == Alignment.CENTRE) {
+			this.label.setAlignment(Align.center);
+		}
+		else if (this.location.horizontal == Alignment.CENTRE && this.location.vertical == Alignment.TOP) {
+			this.label.setAlignment(Align.top);
+		}
+		else if (this.location.horizontal == Alignment.CENTRE && this.location.vertical == Alignment.BOTTOM) {
+			this.label.setAlignment(Align.bottom);
+		}
+		else if (this.location.horizontal == Alignment.LEFT && this.location.vertical == Alignment.CENTRE) {
+			this.label.setAlignment(Align.left);
+		}
+		else if (this.location.horizontal == Alignment.LEFT && this.location.vertical == Alignment.TOP) {
+			this.label.setAlignment(Align.topLeft);
+		}
+		else if (this.location.horizontal == Alignment.LEFT && this.location.vertical == Alignment.BOTTOM) { 
+			this.label.setAlignment(Align.bottomLeft);
+		}
+		else if (this.location.horizontal == Alignment.RIGHT && this.location.vertical == Alignment.CENTRE) {
+			this.label.setAlignment(Align.right);
+		}
+		else if (this.location.horizontal == Alignment.RIGHT && this.location.vertical == Alignment.TOP) {
+			this.label.setAlignment(Align.topRight);
+		}
+		else if (this.location.horizontal == Alignment.RIGHT && this.location.vertical == Alignment.BOTTOM) { 
+			this.label.setAlignment(Align.bottomRight);
+		}
+	}
 	
+	public void setFontSize(int size) {
+		// TODO: Finish implementing so that this will alter the font size of the label
+	}
 }

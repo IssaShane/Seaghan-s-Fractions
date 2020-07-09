@@ -27,7 +27,7 @@ public class GUIContainerRow extends GUIContainer {
 		else if (this.location.horizontal == Alignment.RIGHT) { 
 			Posn newpos_ = contents.get(contents.size()-1).getPos();
 			newpos_.x = this.pos.x + this.pos.w - contents.get(contents.size()-1).getPaddingRight() - newpos_.w;
-			System.out.println("newpos_.w: " + Integer.toString(newpos_.w));
+			//System.out.println("newpos_.w: " + Integer.toString(newpos_.w));
 			contents.get(contents.size()-1).setPos(newpos_);
 			for (int i = contents.size()-2; i >= 0; i--) {
 				Posn newpos = contents.get(i).getPos();
@@ -38,7 +38,7 @@ public class GUIContainerRow extends GUIContainer {
 		else if (this.location.horizontal == Alignment.CENTRE) {
 			// find the centre
 			int centrex = this.pos.x + this.pos.w/2;
-			System.out.println("centrex: " + Integer.toString(centrex));
+			//System.out.println("centrex: " + Integer.toString(centrex));
 			Posn newpos_ = contents.get(contents.size()/2).getPos();
 			if (contents.size() %2 != 0) newpos_.x = centrex - (newpos_.w/2);
 			else newpos_.x = centrex;

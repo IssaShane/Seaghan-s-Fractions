@@ -22,8 +22,9 @@ import java.io.InputStreamReader;
 
 public class FracPracGDX extends ApplicationAdapter {
 	Stage stage;
+	SpriteBatch batch;
 	Skin skin;
-	GUITextArea problemView;
+	TextLabel problemView;
 	Problem problem;
 	FractionInputField fracField;
 	GUIContainer buttons;
@@ -84,6 +85,7 @@ public class FracPracGDX extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		batch = new SpriteBatch();
 		view = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -104,9 +106,11 @@ public class FracPracGDX extends ApplicationAdapter {
 	  });
 	  
 	  // Problem View
-	  problemView = new GUITextArea("", skin, "default", new Posn(10, 10, 200, 100));
+	  problemView = new TextLabel("", skin, new Posn(10, 10, 200, 100));
 	  problem = new Problem();
 	  problemView.setText(problem.toString());
+	  problemView.setLocation(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
+	  problemView.calibrateLocation();
 	  
 	  // reload problem button
 	  GUIButton reloadButton = new GUIButton("Next Problem", skin, "default", new Posn(330,220,120,30));
@@ -194,11 +198,21 @@ public class FracPracGDX extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		drawRGB(82,82,82);
 		stage.draw();
 		stage.act();
 	}
 	
 	@Override
 	public void dispose () {
+	}
+	
+	public void drawRGB(int r, int g, int b) {
+		float R = r, B = b, G = g;
+		R /= 255;
+		G /= 255;
+		B /= 255;
+		Gdx.gl.glClearColor(R, G, B, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
 }

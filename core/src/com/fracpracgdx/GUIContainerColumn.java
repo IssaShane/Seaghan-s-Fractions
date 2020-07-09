@@ -62,7 +62,7 @@ public class GUIContainerColumn extends GUIContainer {
 			
 			if (contents.size()%2 != 0) pos_.y = centrey - (pos_.h/2);
 			else pos_.y = centrey;
-			System.out.println("centre y place: " + Integer.toString(pos_.y));
+			//System.out.println("centre y place: " + Integer.toString(pos_.y));
 			contents.get(contents.size()/2).setPos(pos_);
 			
 			// elements above centre
@@ -74,7 +74,7 @@ public class GUIContainerColumn extends GUIContainer {
 			}
 			// elements below centre
 			for (int i = contents.size()/2+1; i < contents.size(); i++) {
-				System.out.println("below");
+				//System.out.println("below");
 				Posn pos = contents.get(i).getPos();
 				pos.y = contents.get(i-1).getPos().y - contents.get(i-1).getPaddingBottom() - contents.get(i).getPaddingTop() - pos.h;
 				contents.get(i).setPos(pos);

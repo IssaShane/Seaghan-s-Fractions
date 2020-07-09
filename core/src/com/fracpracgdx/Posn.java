@@ -9,6 +9,12 @@ public class Posn {
 		this.w = w;
 		this.h = h;
 	}
+	public Posn(float x, float y, float w, float h) {
+		this.x = (int) x;
+		this.y = (int) y;
+		this.w = (int) w;
+		this.h = (int) h;
+	}
 	
 	public Posn(int x, int y) {
 		this.x = x;
