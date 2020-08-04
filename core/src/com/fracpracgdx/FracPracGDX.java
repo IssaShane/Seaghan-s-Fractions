@@ -32,6 +32,8 @@ public class FracPracGDX extends ApplicationAdapter {
 	GUIContainer view;
 	GUIContainer difficultyView;
 	GUIContainer boundView;
+	GUIContainer tutorialView;
+	GUIContainer outerView;
 	NumberInputField upperBound;
 	NumberInputField lowerBound;
 	GUIContainer totalView;
@@ -112,6 +114,16 @@ public class FracPracGDX extends ApplicationAdapter {
 	  problemView.setLocation(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
 	  problemView.calibrateLocation();
 	  
+	  // Tutorial View
+	  tutorialView = new GUIContainerColumn(new GUILocation(Alignment.LEFT, Alignment.CENTRE));
+	  tutorialView.setPos(new Posn(0,0,640,60));
+	  tutorialView.addElement(new TextLabel("1. Both fractions will have the same denominator", skin, new Posn(0,0,200,20)));
+	  tutorialView.addElement(new TextLabel("2. One fraction's denominator will be a multiple of the other", skin, new Posn(0,0,200,20)));
+	  tutorialView.addElement(new TextLabel("3. Fractions could have completely different denominators", skin, new Posn(0,0,200,20)));
+	  tutorialView.setPaddingBottom(100);
+	  tutorialView.setPaddingLeft(60);
+	  tutorialView.calibrateLocations();
+	  
 	  // reload problem button
 	  GUIButton reloadButton = new GUIButton("Next Problem", skin, "default", new Posn(330,220,120,30));
 	  reloadButton.addListener(new InputListener() { 
@@ -163,7 +175,7 @@ public class FracPracGDX extends ApplicationAdapter {
 	  difficultyView.addElement(diff1);
 	  difficultyView.addElement(diff2);
 	  difficultyView.addElement(diff3);
-	  difficultyView.setPos(new Posn(0,0,210,480));
+	  difficultyView.setPos(new Posn(0,0,210,380));
 	  difficultyView.calibrateLocations();
 	  
 	  view.addElement(problemView);
@@ -171,6 +183,7 @@ public class FracPracGDX extends ApplicationAdapter {
 	  view.addElement(buttons);
 	  view.setPos(new Posn(210,0,220,480));
 	  view.calibrateLocations();
+	  
 	  
 	  boundView = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
 	  upperBound = new NumberInputField(new Posn(0,0,120,30),"uiskin.json");
@@ -182,18 +195,24 @@ public class FracPracGDX extends ApplicationAdapter {
 	  boundView.addElement(boundViewLabel);
 	  boundView.addElement(upperBound);
 	  boundView.addElement(lowerBound);
-	  boundView.setPos(new Posn(0,0,200,480));
+	  boundView.setPos(new Posn(0,0,200,380));
 	  boundView.calibrateLocations();
 	  
 	  totalView = new GUIContainerRow(new GUILocation(Alignment.CENTRE, Alignment.CENTRE));
-	  totalView.setPos(new Posn(0,0,640,480));
+	  totalView.setPos(new Posn(0,0,640,380));
 	  totalView.addElement(difficultyView);
 	  totalView.addElement(view);
 	  totalView.addElement(boundView);
 	  totalView.calibrateLocations();
 	  
+	  outerView = new GUIContainerColumn(new GUILocation(Alignment.CENTRE, Alignment.BOTTOM));
+	  outerView.setPos(new Posn(0,0,640,480));
+	  outerView.addElement(totalView);
+	  outerView.addElement(tutorialView);
+	  outerView.calibrateLocations();
+	  
 	  // add all actors to stage
-	  totalView.addToStage(stage);
+	  outerView.addToStage(stage);
 	}
 
 	@Override
